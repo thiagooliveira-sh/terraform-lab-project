@@ -6,7 +6,7 @@ on:
       - '**.tf'
       - '.github/workflows/terraform-simple.yml'
   push:
-    branches: [ main ]
+    branches: [ master ]
     paths:
       - '**.tf'
       - '.github/workflows/terraform-simple.yml'
