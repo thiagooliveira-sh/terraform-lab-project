@@ -1,3 +1,7 @@
-variable "vpc_id" {
+variable "db_password" {
+  type = string
+}
+
+variable "jwt_secret" {
   type = string
 }

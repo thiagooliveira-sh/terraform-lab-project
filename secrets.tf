@@ -1,17 +1,18 @@
 resource "aws_secretsmanager_secret" "rds_credentials" {
-    name = "devnology/rds/credentials"
-    description = "RDS database credentials for api application"
-    recovery_window_in_days = 0
+  name                    = "devnology/rds/credentials"
+  description             = "RDS database credentials for api application"
+  recovery_window_in_days = 0
 }
 
 resource "aws_secretsmanager_secret_version" "rds_credentials_version" {
   secret_id = aws_secretsmanager_secret.rds_credentials.id
   secret_string = jsondecode({
-    username = "dummy"
-    password = "dummy"
+    username = aws_db_instance.devnology_rds.username
+    password = var.db_password
     engine   = "postgres"
-    host     = "dummy"
-    port     = "dummy"
-    dbname   = "dummy"
+    host     = aws_db_instance.devnology_rds.address
+    port     = aws_db_instance.devnology_rds.port
+    dbname   = aws_db_instance.devnology_rds.db_name
+    jwt      = var.jwt_secret
   })
 }
