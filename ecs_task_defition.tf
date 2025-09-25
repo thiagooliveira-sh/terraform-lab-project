@@ -77,7 +77,7 @@ resource "aws_ecs_task_definition" "devnology_web_ui_task" {
   container_definitions = jsonencode([
     {
       name      = "devnologyweb-ui"
-      image     = "416997488095.dkr.ecr.sa-east-1.amazonaws.com/devnologyweb-ui:3fa840d3ff0595888f3e7aa0085a468ad667e9f5"
+      image     = "416997488095.dkr.ecr.sa-east-1.amazonaws.com/devnologyweb-ui:d09e2cf19158f4054cae7bcc58b5453bdc13a83c"
       essential = true
       portMappings = [
         {
