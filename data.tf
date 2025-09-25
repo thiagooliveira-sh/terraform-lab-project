@@ -46,3 +46,11 @@ data "aws_vpc" "vpc" {
     values = ["home-lab-vpc"]
   }
 }
+
+data "aws_ssm_parameter" "db_password" {
+  name = "db_password"
+}
+
+data "aws_ssm_parameter" "jwt_secret" {
+  name = "jwt_secret"
+}
