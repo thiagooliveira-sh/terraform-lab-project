@@ -6,7 +6,7 @@ resource "aws_secretsmanager_secret" "rds_credentials" {
 
 resource "aws_secretsmanager_secret_version" "rds_credentials_version" {
   secret_id = aws_secretsmanager_secret.rds_credentials.id
-  secret_string = jsondecode({
+  secret_string = jsonencode({
     username = aws_db_instance.devnology_rds.username
     password = data.aws_ssm_parameter.db_password.value
     engine   = "postgres"
