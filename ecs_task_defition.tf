@@ -79,7 +79,7 @@ resource "aws_ecs_task_definition" "devnology_web_ui_task" {
   container_definitions = jsonencode([
     {
       name      = "devnologyweb-ui"
-      image     = "416997488095.dkr.ecr.sa-east-1.amazonaws.com/devnologyweb-ui:b118b672b9d2aa79e2b46e64784f9354b93b2438"
+      image     = "416997488095.dkr.ecr.sa-east-1.amazonaws.com/devnologyweb-ui:3fa840d3ff0595888f3e7aa0085a468ad667e9f5"
       essential = true
       portMappings = [
         {
@@ -96,6 +96,12 @@ resource "aws_ecs_task_definition" "devnology_web_ui_task" {
           "awslogs-stream-prefix" = "ecs"
         }
       }
+      environment = [
+        {
+          name  = "REACT_APP_API_URL"
+          value = aws_lb.devnology_alb.dns_name
+        }
+      ]
     }
   ])
 }
