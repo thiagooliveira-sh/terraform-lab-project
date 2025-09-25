@@ -4,8 +4,8 @@ resource "aws_ecs_task_definition" "devnology_api_task" {
   memory                   = 2048
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  execution_role_arn       = aws_iam_role.ecs_task_execution_role
-  task_role_arn            = aws_iam_role.ecs_task_role
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  task_role_arn            = aws_iam_role.ecs_task_role.arn
 
   container_definitions = jsonencode([
     {
@@ -73,8 +73,8 @@ resource "aws_ecs_task_definition" "devnology_web_ui_task" {
   memory                   = 2048
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  execution_role_arn       = aws_iam_role.ecs_task_execution_role
-  task_role_arn            = aws_iam_role.ecs_task_role
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  task_role_arn            = aws_iam_role.ecs_task_role.arn
 
   container_definitions = jsonencode([
     {
