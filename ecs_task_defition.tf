@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "devnology_api_task" {
       secrets = [
         {
           name   = "NODE_ENV"
-          values = "${aws_secretsmanager_secret.rds_credentials.arn}:node_env::"
+          valueFrom = "${aws_secretsmanager_secret.rds_credentials.arn}:node_env::"
         },
         {
           name      = "DATABASETYPE_DEV"
