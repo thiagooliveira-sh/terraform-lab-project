@@ -8,7 +8,7 @@ resource "aws_ecs_service" "devnology_api_service" {
   network_configuration {
     subnets          = tolist([data.aws_subnet.priv1.id, data.aws_subnet.priv2.id, data.aws_subnet.priv3.id])
     security_groups  = [aws_security_group.ecs_task_sg.id]
-    assign_public_ip = false
+    assign_public_ip = true
   }
 
   depends_on = [
@@ -26,7 +26,7 @@ resource "aws_ecs_service" "devnology_web_ui_service" {
   network_configuration {
     subnets          = tolist([data.aws_subnet.priv1.id, data.aws_subnet.priv2.id, data.aws_subnet.priv3.id])
     security_groups  = [aws_security_group.ecs_task_sg.id]
-    assign_public_ip = false
+    assign_public_ip = true
   }
 
   load_balancer {
