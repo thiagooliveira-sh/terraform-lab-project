@@ -1,13 +1,13 @@
 resource "aws_ecs_task_definition" "devnology_api_task" {
   family                   = "devnology-api-task"
-  cpu                      = "200"
-  memory                   = "512"
+  cpu                      = 1024
+  memory                   = 2048
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   execution_role_arn       = aws_iam_role.ecs_task_execution_role
   task_role_arn            = aws_iam_role.ecs_task_role
 
-  container_definitions = jsondecode([
+  container_definitions = jsonencode([
     {
       name      = "devnology-api"
       image     = "416997488095.dkr.ecr.sa-east-1.amazonaws.com/devnology-api:6af36880f840271484dcd3165668dd6870f170d0"
@@ -69,14 +69,14 @@ resource "aws_ecs_task_definition" "devnology_api_task" {
 
 resource "aws_ecs_task_definition" "devnology_web_ui_task" {
   family                   = "devnologyweb-ui-task"
-  cpu                      = "200"
-  memory                   = "512"
+  cpu                      = 1024
+  memory                   = 2048
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   execution_role_arn       = aws_iam_role.ecs_task_execution_role
   task_role_arn            = aws_iam_role.ecs_task_role
 
-  container_definitions = jsondecode([
+  container_definitions = jsonencode([
     {
       name      = "devnologyweb-ui"
       image     = "416997488095.dkr.ecr.sa-east-1.amazonaws.com/devnologyweb-ui:b118b672b9d2aa79e2b46e64784f9354b93b2438"
@@ -84,7 +84,7 @@ resource "aws_ecs_task_definition" "devnology_web_ui_task" {
       portMappings = [
         {
           containerPort = 80
-          hostPort      = 3000
+          hostPort      = 80
           protocol      = "tcp"
         }
       ]

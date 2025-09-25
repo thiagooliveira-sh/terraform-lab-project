@@ -5,7 +5,7 @@ resource "aws_ecs_cluster" "devnology_cluster" {
 resource "aws_iam_role" "ecs_task_execution_role" {
   name = "ecsTaskExecutionRole"
 
-  assume_role_policy = jsondecode({
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -27,7 +27,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
 resource "aws_iam_role" "ecs_task_role" {
   name = "ecsTaskRole"
 
-  assume_role_policy = jsondecode({
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
@@ -45,7 +45,7 @@ resource "aws_iam_role_policy" "ecs_task_role_secrets_manager_policy" {
   name = "ecsTaskRoleSecretsManagerPolicy"
   role = aws_iam_role.ecs_task_role.id
 
-  policy = jsondecode({
+  policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
