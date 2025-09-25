@@ -89,9 +89,9 @@ resource "aws_lb_target_group" "devnology_api_tg" {
   target_type = "ip"
 
   health_check {
-    path                = "/health"
+    path                = "/"
     protocol            = "HTTP"
-    matcher             = "200-399"
+    matcher             = "200-499"
     interval            = 30
     timeout             = 5
     healthy_threshold   = 2

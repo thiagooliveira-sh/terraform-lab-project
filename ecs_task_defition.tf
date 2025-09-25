@@ -97,7 +97,7 @@ resource "aws_ecs_task_definition" "devnology_web_ui_task" {
       environment = [
         {
           name  = "REACT_APP_API_URL"
-          value = aws_lb.devnology_alb.dns_name
+          value = "${aws_lb.devnology_alb.dns_name}:3001"
         }
       ]
     }
