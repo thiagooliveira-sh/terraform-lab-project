@@ -10,7 +10,7 @@ resource "aws_ecs_task_definition" "devnology_api_task" {
   container_definitions = jsonencode([
     {
       name      = "devnology-api"
-      image     = "416997488095.dkr.ecr.sa-east-1.amazonaws.com/devnology-api:5f43008c313ecda1ec155f3fdaa7b6a8b2a5fea7"
+      image     = "416997488095.dkr.ecr.sa-east-1.amazonaws.com/devnology-api:872484a24e261e428abec1a6488d12cf300cf69e"
       essential = true
       portMappings = [
         {
