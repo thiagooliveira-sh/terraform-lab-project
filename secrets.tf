@@ -15,5 +15,6 @@ resource "aws_secretsmanager_secret_version" "rds_credentials_version" {
     dbname   = aws_db_instance.devnology_rds.db_name
     jwt      = data.aws_ssm_parameter.jwt_secret.value
     node_env = "development"
+    tls      = 0
   })
 }

@@ -10,7 +10,7 @@ resource "aws_ecs_task_definition" "devnology_api_task" {
   container_definitions = jsonencode([
     {
       name      = "devnology-api"
-      image     = "416997488095.dkr.ecr.sa-east-1.amazonaws.com/devnology-api:872484a24e261e428abec1a6488d12cf300cf69e"
+      image     = "416997488095.dkr.ecr.sa-east-1.amazonaws.com/devnology-api:489ae38422ee6f1ba2f9eec5883df9705bdd9a26"
       essential = true
       portMappings = [
         {
@@ -28,6 +28,10 @@ resource "aws_ecs_task_definition" "devnology_api_task" {
         }
       }
       secrets = [
+        {
+          name   = "NODE_TLS_REJECT_UNAUTHORIZED"
+          valueFrom = "${aws_secretsmanager_secret.rds_credentials.arn}:tls::"
+        },
         {
           name   = "NODE_ENV"
           valueFrom = "${aws_secretsmanager_secret.rds_credentials.arn}:node_env::"
