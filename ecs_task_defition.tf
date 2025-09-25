@@ -27,17 +27,15 @@ resource "aws_ecs_task_definition" "devnology_api_task" {
           "awslogs-stream-prefix" = "ecs"
         }
       }
-      environment = [
+      secrets = [
         {
           name   = "NODE_ENV"
-          values = "development"
+          values = "${aws_secretsmanager_secret.rds_credentials.arn}:node_env::"
         },
         {
-          name   = "DATABASETYPE_DEV"
-          values = "postgres"
-        }
-      ]
-      secrets = [
+          name      = "DATABASETYPE_DEV"
+          valueFrom = "${aws_secretsmanager_secret.rds_credentials.arn}:engine::"
+        },
         {
           name      = "HOST_DEV"
           valueFrom = "${aws_secretsmanager_secret.rds_credentials.arn}:host::"
