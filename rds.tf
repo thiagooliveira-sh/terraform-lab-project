@@ -15,7 +15,7 @@ resource "aws_db_instance" "devnology_rds" {
 
 resource "aws_db_subnet_group" "devnology_db_subnet_group" {
   name       = "devnology-db-subnet-group"
-  subnet_ids = tolist(data.aws_subnet.priv1.id, data.aws_subnet.priv2.id, data.aws_subnet.priv3.id)
+  subnet_ids = tolist([data.aws_subnet.priv1.id, data.aws_subnet.priv2.id, data.aws_subnet.priv3.id])
 }
 
 resource "aws_security_group" "devnology_rds_sg" {

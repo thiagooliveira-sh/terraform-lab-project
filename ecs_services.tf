@@ -24,7 +24,7 @@ resource "aws_ecs_service" "devnology_web_ui_service" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets          = tolist(data.aws_subnet.priv1, data.aws_subnet.priv2.id, data.aws_subnet.priv3.id)
+    subnets          = tolist([data.aws_subnet.priv1, data.aws_subnet.priv2.id, data.aws_subnet.priv3.id])
     security_groups  = [aws_security_group.ecs_task_sg]
     assign_public_ip = false
   }
@@ -42,7 +42,7 @@ resource "aws_lb" "devnology_alb" {
   internal                   = false
   load_balancer_type         = "application"
   security_groups            = [aws_security_group.devnology_alb_sg.id]
-  subnets                    = tolist(data.aws_subnet.pub1.id, data.aws_subnet.pub2.id, data.aws_subnet.pub3.id)
+  subnets                    = tolist([data.aws_subnet.pub1.id, data.aws_subnet.pub2.id, data.aws_subnet.pub3.id])
   enable_deletion_protection = false
 }
 
