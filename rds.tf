@@ -1,12 +1,11 @@
 resource "aws_db_instance" "devnology_rds" {
   allocated_storage      = 20
   engine                 = "postgres"
-  engine_version         = "15.2"
+  engine_version         = "17.6"
   instance_class         = "db.t4g.medium"
   db_name                = "devnology_db"
   username               = "devnologyadmin"
   password               = data.aws_ssm_parameter.db_password.value
-  parameter_group_name   = "default.postgres15"
   skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.devnology_rds_sg.id]
   db_subnet_group_name   = aws_db_subnet_group.devnology_db_subnet_group.name

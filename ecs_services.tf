@@ -70,7 +70,7 @@ resource "aws_lb_listener" "devnology_web_ui_listner" {
   protocol          = "HTTP"
 
   default_action {
-    type             = "foward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.devnology_web_ui_tg.arn
   }
 
