@@ -5,7 +5,7 @@ resource "aws_db_instance" "devnology_rds" {
   instance_class         = "db.t4g.medium"
   db_name                = "devnology_db"
   username               = "devnologyadmin"
-  password               = var.db_password
+  password               = var.DB_PASSWORD
   parameter_group_name   = "default.postgres15"
   skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.devnology_rds_sg.id]

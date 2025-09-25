@@ -1,7 +1,7 @@
-variable "db_password" {
+variable "DB_PASSWORD" {
   type = string
 }
 
-variable "jwt_secret" {
+variable "JWT_SECRET" {
   type = string
 }
