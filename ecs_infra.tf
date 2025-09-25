@@ -50,7 +50,7 @@ resource "aws_iam_role_policy" "ecs_task_execution_secrets_manager_policy" {
     Statement = [
       {
         Effect   = "Allow"
-        Action   = ["secretsmanager:GetSecretValeu", "secretsmanager:DescribeSecret"],
+        Action   = ["secretsmanager:GetSecretValue", "secretsmanager:DescribeSecret"],
         Resource = "*"
       }
     ]
