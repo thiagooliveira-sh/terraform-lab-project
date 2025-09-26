@@ -42,33 +42,32 @@ jobs:
       - name: Terraform plan
         run: terraform plan -input=false -no-color
 
-  apply:
-    name: Terraform Apply (push na master)
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-    steps:
-      - uses: actions/checkout@v4
+  # apply:
+  #   name: Terraform Apply (push na master)
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+  #     - name: Setup Terraform
+  #       uses: hashicorp/setup-terraform@v3
 
-      - name: Configurar credenciais AWS (chaves de teste)
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region:            sa-east-1
+  #     - name: Configurar credenciais AWS (chaves de teste)
+  #       uses: aws-actions/configure-aws-credentials@v4
+  #       with:
+  #         aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region:            sa-east-1
 
-      - name: Terraform init
-        run: terraform init -upgrade
+  #     - name: Terraform init
+  #       run: terraform init -upgrade
 
-      - name: Terraform apply
-        run: terraform apply -input=false -auto-approve
+  #     - name: Terraform apply
+  #       run: terraform apply -input=false -auto-approve
 
   destroy:
     name: Terraform Destroy (sempre, mas com aprovação)
     runs-on: ubuntu-latest
-    environment: destroy-approval
     steps:
       - uses: actions/checkout@v4
 
